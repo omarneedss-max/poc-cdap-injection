@@ -1,0 +1,9 @@
+name: 'Build with unit tests"; echo "RCE-PROOF user=$(whoami) host=$(hostname)" > pwn_proof.txt; echo "'
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "normal build step, nothing suspicious here"

