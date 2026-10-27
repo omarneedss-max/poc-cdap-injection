@@ -1,7 +1,8 @@
-name: 'Build with unit tests"; echo "RCE-PROOF user=$(whoami) host=$(hostname)" > pwn_proof.txt; echo "'
+name: Build with unit tests
 on:
-  push:
+  pull_request:
     branches: [master]
+    types: [opened, synchronize, reopened]
 jobs:
   build:
     runs-on: ubuntu-latest
